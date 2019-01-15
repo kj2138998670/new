@@ -1,0 +1,65 @@
+BoxLayout:
+    # this layout has an id so we can check if it is the parent of the popup - below
+    id: main_box
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.3
+                Spinner:
+                    id: state_selection
+                    text: app.current_state
+                    values: app.state_code
+                    on_text: app.change_state(self.text)
+                Label:
+                    text:'Add New song...'
+                Label:
+                    text: 'Title: '
+                    size_hint_y: None
+                    height: '48dp'
+                TextInput:
+                    id: added_Title
+                    value: ''
+                    size_hint_y: None
+                    height: '48dp'
+                    multiline: False
+                    write_tab: False
+                Label:
+                    text: 'Artist: '
+                    size_hint_y: None
+                    height: '48dp'
+                TextInput:
+                    id: added_Artist
+                    value: ''
+                    size_hint_y: None
+                    height: '48dp'
+                    multiline: False
+                    write_tab: False
+                Label:
+                    text: 'Year: '
+                    size_hint_y: None
+                    height: '48dp'
+                TextInput:
+                    id: added_Year
+                    value: ''
+                    size_hint_y: None
+                    height: '48dp'
+                    multiline: False
+                    write_tab: False
+                Button:
+                    text: 'Add Song'
+                    on_release: app.press_add()
+                Button:
+                    text: 'Clear'
+                    on_release: app.press_clear()
+
+            GridLayout:
+                # this layout is populated with (button) widgets in app code
+                id: entries_box
+                cols: 1
+                orientation: 'vertical'
+        Label:
+            size_hint_y: 0.1
+            text: app.status_text
